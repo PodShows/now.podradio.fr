@@ -1,0 +1,352 @@
+<html>
+<!--now.podradio.fr est téléchargeable avec ses scripts etc à now.podradio.fr/download.zip -->
+<head>
+<title>podradio </title>
+<!--Les scripts nécessaires à l'utilisation des API de podradio -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/script/script.js"></script>
+
+<!--Les scripts nécessaires à SoundManager2 qui permet la lecture audio -->
+<script type="text/javascript" src="/script/soundmanager2.js"></script>
+<script type="text/javascript" src="/script/mp3-player-button.js"></script>
+<script>
+soundManager.setup({
+  // chemin vers le dossier contenant la version flash du lecteur audio
+  url: '/swf/'
+});
+</script>
+<!--Ces balises servent à la transformation en webapp iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name = "viewport" content = "user-scalable=no, width=device-width">
+
+
+<!--Le CSS -->
+<style media="screen" type="text/css">
+<!-- personnalisation générale -->
+body {
+margin-top: 0px;
+    background: url(http://podradio.fr/assets/site/gradientv2.png) repeat-x #000;
+    color: white;
+	font-family:'Lucida Grande',Helvetica,sans-serif;
+	}
+
+<!-- encadrement gris des pochettes -->
+a {    
+    text-decoration: none; 
+	color:#DDD;
+	font-size: 20px;
+}
+a:hover {    
+    color:white;
+	}
+	
+<!-- sm2 buttons c'est les boutons de SoundManager2, cela permet de montrer ce qui est en cours de lecture -->
+a.sm2_button {
+ 
+}
+
+a.sm2_button:focus {
+ outline:none; 
+}
+
+a.sm2_button,
+a.sm2_button.sm2_paused:hover {
+ 
+}
+
+a.sm2_button:hover,
+a.sm2_button.sm2_playing,
+a.sm2_button.sm2_playing:hover {
+}
+
+a.sm2_button.sm2_playing,
+a.sm2_button.sm2_playing:hover {
+	background-color: #565656;
+}
+
+a.sm2_button.sm2_paused,
+a.sm2_button.sm2_paused:hover {
+ 
+}
+<!-- personnalisation du reste de la page -->
+#content {
+    background-color: #0A0A0A;
+    margin: 0px auto;
+	width: 1000px;
+}
+#header {
+    font-size:42px;
+	font-weight:bold;
+	background-color: #0A0A0A;
+	width: 1000px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+<!-- le cadre contenant le texte de ce qui est diffusé -->
+#infos {
+    font-size: 14px;
+    width: 280px;
+    height: 70px;
+    margin-top: -95px;
+    opacity: 0.99;
+    margin-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+<!-- le cadre de la pochette-->
+#cover {
+    padding: 10px;
+    height: 280px;
+    width: 280px;
+}
+#cover:hover { 
+    background-color: #444;
+}
+<!-- les liens vers la grille et le flux en bas-->
+#buttons {
+    padding: 20px;
+}
+
+<!-- favicons et icone iOS-->
+</style><link rel="icon" type="image/png" href="http://podradio.fr/favicon.ico" />
+<link rel="apple-touch-icon-precomposed" href="http://podradio.fr/assets/site/apple-touch-icon/icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://podradio.fr/assets/site/apple-touch-icon/icon-72.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://podradio.fr/assets/site/apple-touch-icon/icon-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://podradio.fr/assets/site/apple-touch-icon/icon-144.png">
+<link rel="apple-touch-startup-image" href="/startup.png">
+
+</head>
+<body>
+<center>
+<div id="header">
+<a href="http://podradio.fr"><img src="http://podradio.fr/assets/site/pages/logo.png"></a>
+</div>
+<div id="content">
+<table>
+<tr>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<!-- la class sm2button permet de dire que ce lien est à lire avec SoundManager2 -->
+<!-- le ?.mp3 permet la lecture du flux avec SoundManager2. Sinon ce n'est pas reconnu en tant que flux lisible-->
+<a href="http://radio.podradio.fr:8000/qc_adsl?.mp3" class="sm2_button">
+<div style="font-size:40px;">&alpha; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
+<!-- permet de récupérer la pochette et de recharger toute les 10s-->
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=2"  data-reload="10">
+<!-- permet de récupérer les infos en texte et de recharger toute les 10s-->
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=2" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/adsl?.mp3" class="sm2_button">
+<div style="font-size:40px;">&alpha; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=1"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=1" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/ict_adsl?.mp3" class="sm2_button">
+<div style="font-size:40px;">&alpha; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=9"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=9" data-reload="10"></div></a>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=alpha&timezone=hne"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/qc_adsl">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=alpha&timezone=cet"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/adsl">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=alpha&timezone=ict"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/itc_adsl">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+</tr>
+</table>
+<br><br>
+<table>
+<tr>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/qc_adsl_b?.mp3" class="sm2_button">
+<div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=4"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=4" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/adsl_b?.mp3" class="sm2_button">
+<div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=3"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=3" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/ict_adsl_b?.mp3" class="sm2_button">
+<div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=10"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=10" data-reload="10"></div></a>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=beta&timezone=hne"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/qc_adsl_b">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=beta&timezone=cet"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<a target="_blank" href="http://radio.podradio.fr:8000/adsl_b">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=beta&timezone=ict"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/itc_adsl_b">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+</tr>
+</table>
+<br><br>
+<table>
+<tr>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/qc_adsl_g?.mp3" class="sm2_button">
+<div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=6"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=6" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/adsl_g?.mp3" class="sm2_button">
+<div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=5"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=5" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/ict_adsl_g?.mp3" class="sm2_button">
+<div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=11"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=11" data-reload="10"></div></a>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=gamma&timezone=hne"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/qc_adsl_g">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=gamma&timezone=cet"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/adsl_g">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=gamma&timezone=ict"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/itc_adsl_g">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+</tr>
+</table>
+<br><br>
+<table>
+<tr>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/qc_adsl_d?.mp3" class="sm2_button">
+<div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=8"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=8" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/adsl_d?.mp3" class="sm2_button">
+<div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=7"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=7" data-reload="10"></div></a>
+</td>
+<td style="text-align:center; background-color:#111;" colspan="2">
+<a href="http://radio.podradio.fr:8000/ict_adsl_d?.mp3" class="sm2_button">
+<div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
+<img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=12"  data-reload="10">
+<div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=12" data-reload="10"></div></a>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=delta&timezone=hne"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/qc_adsl_d">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=delta&timezone=cet"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/adsl_d">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://podradio.fr/programs?channel=delta&timezone=ict"><img height="20" width="20" src=http://podradio.fr/assets/site/home/schedule.png> Grille</a></div>
+</td>
+<td style="text-align:center;">
+<div id="buttons">
+<a target="_blank" href="http://radio.podradio.fr:8000/itc_adsl_d">
+<img height="20" width="20" src=http://podradio.fr/assets/site/pages/flux.png> Flux</a></div>
+</td>
+</tr>
+</table>
+
+</center>
+</div>
+
+
+
+</body>
+
+
+
+
+</html>
