@@ -109,6 +109,12 @@ a.sm2_button.sm2_paused:hover {
 #cover:hover { 
     background-color: #444;
 }
+#next {
+    font-size: 11px;
+    width: 280px;
+    height: 34px;
+    overflow: hidden;
+}
 /* les liens vers la grille et le flux en bas*/
 #buttons {
     padding: 20px;
@@ -142,18 +148,22 @@ a.sm2_button.sm2_paused:hover {
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=2"  data-reload="10">
 <!-- permet de récupérer les infos en texte et de recharger toute les 10s-->
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=2" data-reload="10"></div></a>
+<!-- permet de récupérer le programme à venir en texte et de recharger toute les 10s-->
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=2" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/adsl?.mp3" class="sm2_button">
 <div style="font-size:40px;">&alpha; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=1"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=1" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=1" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/ict_adsl?.mp3" class="sm2_button">
 <div style="font-size:40px;">&alpha; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=9"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=9" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=9" data-reload="10"></div>
 </td>
 </tr>
 <tr>
@@ -194,18 +204,21 @@ a.sm2_button.sm2_paused:hover {
 <div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=4"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=4" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=4" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/adsl_b?.mp3" class="sm2_button">
 <div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=3"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=3" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=3" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/ict_adsl_b?.mp3" class="sm2_button">
 <div style="font-size:40px;">&beta; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=10"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=10" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=10" data-reload="10"></div>
 </td>
 </tr>
 <tr>
@@ -245,18 +258,21 @@ a.sm2_button.sm2_paused:hover {
 <div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=6"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=6" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=6" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/adsl_g?.mp3" class="sm2_button">
 <div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=5"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=5" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=5" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/ict_adsl_g?.mp3" class="sm2_button">
 <div style="font-size:40px;">&gamma; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=11"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=11" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=11" data-reload="10"></div>
 </td>
 </tr>
 <tr>
@@ -297,18 +313,21 @@ a.sm2_button.sm2_paused:hover {
 <div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/quebec-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=8"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=8" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=8" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/adsl_d?.mp3" class="sm2_button">
 <div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/france-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=7"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=7" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=7" data-reload="10"></div>
 </td>
 <td style="text-align:center; background-color:#111;" colspan="2">
 <a href="http://radio.podradio.fr:8000/ict_adsl_d?.mp3" class="sm2_button">
 <div style="font-size:40px;">&delta; <img src="http://podradio.fr/assets/site/drapeaux/thailand-flag.png"><br/></div>
 <img id="cover" data-img-src="http://api.podradio.fr/v1/cover?radio=12"  data-reload="10">
 <div id="infos" data-html-src="http://api.podradio.fr/v1/now?radio=12" data-reload="10"></div></a>
+<div id="next" data-html-src="http://api.podradio.fr/v1/next.txt?radio=12" data-reload="10"></div>
 </td>
 </tr>
 <tr>
